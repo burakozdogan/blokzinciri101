@@ -3,37 +3,45 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta name="description" content="Blokzinciri 101: Finansın Geleceği ve Dijital Dönüşüm Rehberi.">
-    <title>Blokzinciri 101 - Yeni Kitap</title>
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;700&display=swap" rel="stylesheet">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    <meta name="description" content="Bankacılığın Metaverse Yolculuğu: Finansın Blokzinciri ve Geleceği.">
+    <title>Bankacılığın Metaverse Yolculuğu</title>
+    <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@300;400;600;700&family=Inter:wght@300;400;600&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     
     <style>
-        /* --- GENEL AYARLAR --- */
+        /* --- AYARLAR --- */
         :root {
-            --primary-color: #0f172a; /* Koyu Lacivert (Güven/Finans) */
-            --accent-color: #3b82f6; /* Teknoloji Mavisi */
-            --text-dark: #1e293b;
-            --text-light: #64748b;
-            --white: #ffffff;
-            --bg-light: #f8fafc;
+            --bg-dark: #020617;
+            --primary: #3b82f6;
+            --secondary: #8b5cf6;
+            --accent: #06b6d4;
+            --glass: rgba(255, 255, 255, 0.03);
+            --glass-border: rgba(255, 255, 255, 0.1);
+            --text-main: #f8fafc;
+            --text-muted: #94a3b8;
         }
 
-        * {
-            margin: 0;
-            padding: 0;
-            box-sizing: border-box;
-        }
+        * { margin: 0; padding: 0; box-sizing: border-box; scroll-behavior: smooth; }
 
         body {
             font-family: 'Inter', sans-serif;
-            line-height: 1.6;
-            color: var(--text-dark);
-            background-color: var(--white);
+            background-color: var(--bg-dark);
+            color: var(--text-main);
+            overflow-x: hidden;
         }
 
-        a { text-decoration: none; }
-        ul { list-style: none; }
+        h1, h2, h3, .logo { font-family: 'Space Grotesk', sans-serif; }
+
+        /* --- ARKA PLAN (CANVAS) --- */
+        #canvas-bg {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            z-index: -1;
+            background: radial-gradient(circle at top right, #172554, #020617);
+        }
 
         /* --- NAVBAR --- */
         .navbar {
@@ -41,345 +49,375 @@
             justify-content: space-between;
             align-items: center;
             padding: 1.5rem 5%;
-            position: absolute;
+            position: fixed;
             width: 100%;
             top: 0;
-            z-index: 10;
+            z-index: 100;
+            backdrop-filter: blur(12px);
+            border-bottom: 1px solid var(--glass-border);
         }
 
         .logo {
-            font-size: 1.5rem;
+            font-size: 1.4rem;
             font-weight: 700;
-            color: var(--white);
-            letter-spacing: -1px;
+            letter-spacing: -0.5px;
+            color: white;
         }
 
         .nav-btn {
-            padding: 0.6rem 1.2rem;
+            padding: 0.8rem 1.5rem;
             background: rgba(255,255,255,0.1);
-            color: var(--white);
-            border: 1px solid rgba(255,255,255,0.2);
-            border-radius: 6px;
+            border: 1px solid var(--glass-border);
+            color: white;
+            border-radius: 50px;
             font-size: 0.9rem;
             transition: 0.3s;
         }
 
-        .nav-btn:hover {
-            background: var(--white);
-            color: var(--primary-color);
-        }
+        .nav-btn:hover { background: white; color: var(--bg-dark); }
 
-        /* --- HERO BÖLÜMÜ (Giriş) --- */
+        /* --- HERO --- */
         .hero {
-            background: linear-gradient(135deg, #0f172a 0%, #1e293b 100%);
-            color: var(--white);
-            padding: 8rem 5% 5rem;
+            min-height: 100vh;
             display: flex;
             align-items: center;
             justify-content: space-between;
-            gap: 4rem;
-            min-height: 90vh;
+            padding: 8rem 5% 4rem;
+            position: relative;
         }
 
         .hero-content {
             flex: 1;
-            max-width: 600px;
+            max-width: 700px;
+            z-index: 2;
         }
 
         .badge {
             display: inline-block;
-            background: rgba(59, 130, 246, 0.2);
-            color: #60a5fa;
-            padding: 0.4rem 1rem;
+            padding: 0.5rem 1rem;
             border-radius: 50px;
+            background: linear-gradient(90deg, rgba(59,130,246,0.2), rgba(139,92,246,0.2));
+            color: #60a5fa;
+            border: 1px solid rgba(59,130,246,0.3);
             font-size: 0.85rem;
+            margin-bottom: 2rem;
             font-weight: 600;
-            margin-bottom: 1.5rem;
         }
 
         .hero h1 {
-            font-size: 3.5rem;
+            font-size: 3.8rem;
             line-height: 1.1;
             margin-bottom: 1.5rem;
-            font-weight: 800;
+            font-weight: 700;
+            background: linear-gradient(to right, #fff, #94a3b8);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
         }
 
         .hero p {
-            font-size: 1.1rem;
-            color: #cbd5e1;
-            margin-bottom: 2rem;
+            font-size: 1.2rem;
+            color: var(--text-muted);
+            margin-bottom: 2.5rem;
+            line-height: 1.8;
+            max-width: 600px;
         }
 
-        .cta-group {
-            display: flex;
-            gap: 1rem;
-        }
-
-        .btn-primary {
-            background-color: var(--accent-color);
-            color: var(--white);
-            padding: 1rem 2rem;
+        .btn-glow {
+            display: inline-flex;
+            align-items: center;
+            gap: 10px;
+            padding: 1rem 2.5rem;
+            background: var(--primary);
+            color: white;
+            font-weight: 700;
             border-radius: 8px;
-            font-weight: 600;
-            transition: transform 0.2s;
-            display: inline-block;
-        }
-
-        .btn-primary:hover {
-            background-color: #2563eb;
-            transform: translateY(-2px);
-        }
-
-        .btn-outline {
-            border: 1px solid rgba(255,255,255,0.3);
-            color: var(--white);
-            padding: 1rem 2rem;
-            border-radius: 8px;
-            font-weight: 600;
             transition: 0.3s;
+            box-shadow: 0 0 25px rgba(59, 130, 246, 0.4);
+            border: none;
         }
 
-        .btn-outline:hover {
-            background: rgba(255,255,255,0.1);
+        .btn-glow:hover {
+            transform: translateY(-3px);
+            background: #2563eb;
+            box-shadow: 0 0 40px rgba(59, 130, 246, 0.6);
         }
 
+        /* 3D KİTAP EFEKTİ */
         .hero-image {
             flex: 1;
             display: flex;
             justify-content: center;
+            perspective: 1500px;
+            z-index: 2;
+        }
+
+        .book-container {
+            position: relative;
+            width: 300px;
+            height: 460px;
+            transform-style: preserve-3d;
+            transform: rotateY(-25deg) rotateX(10deg);
+            transition: transform 0.5s ease;
+            animation: float 6s ease-in-out infinite;
+        }
+
+        .book-cover {
+            position: absolute;
+            width: 100%;
+            height: 100%;
+            border-radius: 4px;
+            box-shadow: -15px 15px 40px rgba(0,0,0,0.6);
+            object-fit: cover;
+        }
+
+        .hero-image:hover .book-container {
+            transform: rotateY(0deg) rotateX(0deg) scale(1.05);
+            animation-play-state: paused;
+        }
+
+        @keyframes float {
+            0%, 100% { transform: rotateY(-25deg) rotateX(10deg) translateY(0); }
+            50% { transform: rotateY(-25deg) rotateX(10deg) translateY(-20px); }
+        }
+
+        /* --- İÇERİK KARTLARI --- */
+        .features {
+            padding: 5rem 5%;
+            z-index: 2;
             position: relative;
         }
 
-        /* Kitap Kapağı Efekti */
-        .book-cover {
-            width: 300px; /* Kitap genişliği */
-            height: 450px; /* Kitap yüksekliği */
-            background-color: #334155; /* Resim yoksa görünecek renk */
-            border-radius: 4px;
-            box-shadow: 
-                -15px 15px 30px rgba(0,0,0,0.5), /* Gölge */
-                5px 0 10px rgba(255,255,255,0.1) inset; /* Işık */
-            transform: rotateY(-15deg) rotateX(5deg);
-            transition: transform 0.5s ease;
-            object-fit: cover;
-        }
-
-        .hero-image:hover .book-cover {
-            transform: rotateY(0deg) rotateX(0deg) scale(1.02);
-        }
-
-        /* --- KİTAP HAKKINDA --- */
-        .features {
-            padding: 5rem 5%;
-            background: var(--bg-light);
-        }
-
-        .section-title {
-            text-align: center;
-            margin-bottom: 3rem;
-        }
-
-        .section-title h2 {
-            font-size: 2.2rem;
-            color: var(--primary-color);
-            margin-bottom: 0.5rem;
-        }
+        .section-header { margin-bottom: 3rem; }
+        .section-header h2 { font-size: 2.5rem; color: white; margin-bottom: 10px; }
+        .section-header p { color: var(--text-muted); }
 
         .grid-container {
             display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
             gap: 2rem;
         }
 
-        .feature-card {
-            background: var(--white);
-            padding: 2rem;
-            border-radius: 12px;
-            box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.05);
-            transition: transform 0.3s;
+        .glass-card {
+            background: var(--glass);
+            border: 1px solid var(--glass-border);
+            padding: 2.5rem;
+            border-radius: 16px;
+            transition: 0.4s;
+            backdrop-filter: blur(10px);
         }
 
-        .feature-card:hover {
-            transform: translateY(-5px);
+        .glass-card:hover {
+            transform: translateY(-10px);
+            border-color: var(--primary);
+            background: rgba(255,255,255,0.05);
         }
 
-        .feature-icon {
-            font-size: 1.5rem;
-            color: var(--accent-color);
-            margin-bottom: 1rem;
+        .card-number {
+            font-family: 'Space Grotesk', sans-serif;
+            font-size: 3rem;
+            font-weight: 700;
+            color: rgba(255,255,255,0.05);
+            position: absolute;
+            top: 20px;
+            right: 20px;
         }
 
-        /* --- YAZAR BÖLÜMÜ --- */
+        .glass-card h3 { font-size: 1.4rem; margin-bottom: 1rem; color: var(--accent); }
+        .glass-card p { color: var(--text-muted); font-size: 0.95rem; line-height: 1.6; }
+
+        /* --- YAZAR --- */
         .author {
-            padding: 5rem 5%;
+            padding: 6rem 5%;
+            background: linear-gradient(to top, #020617, rgba(2,6,23,0));
             display: flex;
             align-items: center;
             gap: 4rem;
-            background: var(--white);
+            position: relative;
+            z-index: 2;
         }
 
         .author-img {
-            width: 250px;
-            height: 250px;
+            width: 180px;
+            height: 180px;
             border-radius: 50%;
+            border: 2px solid var(--secondary);
             object-fit: cover;
-            box-shadow: 0 10px 20px rgba(0,0,0,0.1);
+            padding: 4px;
         }
 
-        .author-bio h3 {
-            font-size: 2rem;
-            margin-bottom: 0.5rem;
-            color: var(--primary-color);
-        }
-
-        .author-title {
-            color: var(--accent-color);
-            font-weight: 600;
-            margin-bottom: 1.5rem;
-            display: block;
-        }
-
-        /* --- SATIN ALMA (CTA) --- */
-        .purchase {
-            padding: 5rem 5%;
-            background: var(--primary-color);
+        /* --- SATIN AL --- */
+        .cta-section {
+            padding: 6rem 5%;
             text-align: center;
-            color: var(--white);
+            position: relative;
+            z-index: 2;
+            border-top: 1px solid var(--glass-border);
         }
 
-        .store-buttons {
+        .store-grid {
             display: flex;
             justify-content: center;
+            gap: 1.5rem;
+            margin-top: 3rem;
             flex-wrap: wrap;
-            gap: 1rem;
-            margin-top: 2rem;
         }
 
         .store-btn {
-            background: var(--white);
-            color: var(--primary-color);
-            padding: 1rem 2rem;
-            border-radius: 8px;
-            font-weight: 700;
+            background: rgba(255,255,255,0.05);
+            border: 1px solid var(--glass-border);
+            color: white;
+            padding: 1.2rem 2.5rem;
+            border-radius: 12px;
+            font-weight: 600;
             display: flex;
             align-items: center;
-            gap: 0.5rem;
+            gap: 12px;
             transition: 0.3s;
         }
 
-        .store-btn:hover {
-            background: #e2e8f0;
-        }
+        .store-btn:hover { background: white; color: var(--bg-dark); transform: scale(1.05); }
 
-        /* --- FOOTER --- */
-        footer {
-            padding: 2rem 5%;
-            text-align: center;
-            background: #020617;
-            color: #64748b;
-            font-size: 0.9rem;
-        }
-
-        footer a { color: #94a3b8; margin: 0 10px; }
-        footer a:hover { color: var(--white); }
-
-        /* --- MOBİL UYUMLULUK --- */
-        @media (max-width: 768px) {
-            .hero {
-                flex-direction: column-reverse;
-                text-align: center;
-                padding-top: 6rem;
-            }
-
+        /* --- RESPONSIVE --- */
+        @media (max-width: 900px) {
+            .hero { flex-direction: column-reverse; text-align: center; padding-top: 8rem; }
             .hero h1 { font-size: 2.5rem; }
-            
-            .cta-group {
-                justify-content: center;
-            }
-
-            .author {
-                flex-direction: column;
-                text-align: center;
-            }
+            .author { flex-direction: column; text-align: center; }
+            .store-grid { flex-direction: column; }
         }
     </style>
 </head>
 <body>
 
+    <canvas id="canvas-bg"></canvas>
+
     <nav class="navbar">
         <div class="logo">blokzinciri101</div>
-        <a href="#satin-al" class="nav-btn">Satın Al</a>
+        <a href="#satin-al" class="nav-btn">Kitabı İncele</a>
     </nav>
 
     <section class="hero">
         <div class="hero-content">
             <span class="badge">YENİ ÇIKTI</span>
-            <h1>Geleceğin Finans Dünyasına Adım Atın</h1>
-            <p>Blokzinciri, Metaverse ve Yeni Nesil Finansal Teknolojiler üzerine kapsamlı, anlaşılır ve akademik derinliğe sahip bir başucu kitabı.</p>
-            <div class="cta-group">
-                <a href="#satin-al" class="btn-primary">Kitabı Satın Al</a>
-                <a href="#hakkinda" class="btn-outline">İçindekiler</a>
-            </div>
+            <h1>Bankacılığın Metaverse Yolculuğu</h1>
+            <p>Finansın Blokzinciri ve Geleceği. Web3'ten DeFi'ye, NFT'lerden geleceğin bankacılık modellerine uzanan kapsamlı bir rehber.</p>
+            <a href="#satin-al" class="btn-glow">
+                Hemen Satın Al <i class="fas fa-arrow-right"></i>
+            </a>
         </div>
         <div class="hero-image">
-            <img src="kitap.jpg" alt="Blokzinciri 101 Kitap Kapağı" class="book-cover">
-        </div>
-    </section>
-
-    <section id="hakkinda" class="features">
-        <div class="section-title">
-            <h2>Neler Öğreneceksiniz?</h2>
-            <p>Sadece teorik bilgi değil, gerçek dünya uygulamaları ve analizler.</p>
-        </div>
-        <div class="grid-container">
-            <div class="feature-card">
-                <i class="fas fa-cubes feature-icon"></i>
-                <h3>Blokzinciri Temelleri</h3>
-                <p>Karmaşık teknik terimlere boğulmadan, teknolojinin çalışma mantığını ve felsefesini kavrayın.</p>
-            </div>
-            <div class="feature-card">
-                <i class="fas fa-coins feature-icon"></i>
-                <h3>DeFi ve Kripto Varlıklar</h3>
-                <p>Merkeziyetsiz finansın (DeFi) geleneksel bankacılığı nasıl dönüştürdüğünü keşfedin.</p>
-            </div>
-            <div class="feature-card">
-                <i class="fas fa-vr-cardboard feature-icon"></i>
-                <h3>Metaverse Ekonomisi</h3>
-                <p>Sanal dünyaların finansal boyutu, NFT'ler ve dijital mülkiyet kavramları üzerine analizler.</p>
+            <div class="book-container">
+                <img src="kitap.jpg" alt="Kitap Kapağı" class="book-cover" onerror="this.src='https://via.placeholder.com/300x460/1e293b/475569?text=KAPAK+YUKLE'">
             </div>
         </div>
     </section>
 
-    <section id="yazar" class="author">
-        <img src="yazar.jpg" alt="Yazar Fotoğrafı" class="author-img">
-        <div class="author-bio">
-            <h3>Burak Özdoğan</h3>
-            <span class="author-title">Doç. Dr. - Finans & Teknoloji Danışmanı</span>
-            <p>Akademik kariyerini finans ve teknoloji kesişiminde sürdüren yazar, kurumsal şirketlere blokzinciri ve dijital dönüşüm ve teknoloji liderliği konularında danışmanlık vermekte, konuşmalar yapmaktadır.. Sektördeki deneyimlerini ve akademik araştırmalarını bu kitapta bir araya getirdi.</p>
-            <br>
-            <a href="https://www.linkedin.com/in/burakozdogan/" style="color:var(--accent-color); font-weight:600;">Linkedin Profiline Git &rarr;</a>
+    <section class="features">
+        <div class="section-header">
+            <h2>İçindekiler & Öngörüler</h2>
+            <p>Bu kitap, finansal dönüşümün yapı taşlarını 4 ana bölümde inceliyor.</p>
         </div>
-    </section>
-
-    <section id="satin-al" class="purchase">
-        <h2>Kütüphanenize Ekleyin</h2>
-        <p style="opacity: 0.8; margin-top: 10px;">Tüm seçkin kitapçılarda ve online mağazalarda.</p>
         
-        <div class="store-buttons">
-            <a href="https://www.gazikitabevi.com.tr/bankaciligin-metaverse-yolculugu-finansin-blokzinciri-ve-gelecegi" class="store-btn"><i class="fas fa-book"></i> Gazi'den Satın Al</a>
-            <a href="https://www.kitapyurdu.com/kitap/bankaciligin-metaverse-yolculugu-finansin-blokzinciri-ve-gelecegi/735453.html&filter_name=bankacılığın+metaverse&s_token=9737af3258438d7191e1d3c6593c21c15684c58a7ae908c6b9b6755a3269913d&s_time=1765952529" class="store-btn"><i class="fas fa-shopping-bag"></i> Kitapyurdu</a>
-            <a href="https://www.amazon.com.tr/Bankacılığın-Metaverse-Yolculuğu-Finansın-Blokzinciri/dp/6255816575/ref=sr_1_1?crid=39L66EP1WV9ZC&dib=eyJ2IjoiMSJ9.EFPPcFDUBgRT34DmSZpwaw.1yt-MBgxW4r3KiQriR6d-xUKWeXuJrts_qNwAbR9-_o&dib_tag=se&keywords=bankacılığın+metaverse+yolculuğu&qid=1766053664&sprefix=bankacılığın+met%2Caps%2C194&sr=8-1" class="store-btn"><i class="fab fa-amazon"></i> Amazon</a>
+        <div class="grid-container">
+            <div class="glass-card">
+                <div class="card-number">01</div>
+                <h3>Web3 & Altyapı</h3>
+                <p>Blokzinciri teknolojisi, Akıllı Sözleşmeler ve yeni internetin temelleri. Geleneksel finansal sistemlerin Web3 ile nasıl birleştiğini keşfedin.</p>
+            </div>
+
+            <div class="glass-card">
+                <div class="card-number">02</div>
+                <h3>DeFi & DAO</h3>
+                <p>Merkeziyetsiz Finans (DeFi) ekosistemi, Kripto Varlık Cüzdanları ve Merkeziyetsiz Otonom Organizasyonlar (DAO) ile yönetim modelleri.</p>
+            </div>
+
+            <div class="glass-card">
+                <div class="card-number">03</div>
+                <h3>Metaverse Ekonomisi</h3>
+                <p>Dijital mülkiyet, NFT'ler (Non-Fungible Token) ve Metaverse'e dayalı yeni iş modelleri. Sanal dünyada riskler ve güvenlik.</p>
+            </div>
+
+            <div class="glass-card">
+                <div class="card-number">04</div>
+                <h3>Geleceğin Bankacılığı</h3>
+                <p>Finansın geleceği: Bankacılıkta paradigma değişimi, Fintekler ve Bankaların rekabeti/işbirliği ve devletlerin Web3'teki rolü.</p>
+            </div>
+        </div>
+    </section>
+
+    <section class="author">
+        <img src="yazar.jpg" alt="Yazar" class="author-img" onerror="this.src='https://via.placeholder.com/200x200/1e293b/94a3b8?text=FOTO'">
+        <div>
+            <h2 style="font-size: 2rem; color: white; margin-bottom: 0.5rem;">Yazar Hakkında</h2>
+            <p style="color: var(--secondary); margin-bottom: 1rem; font-weight:600;">Doçent Dr. & Danışman</p>
+            <p style="color: var(--text-muted); line-height: 1.7;">
+                Girişimcilik, teknoloji, finansal raporlama ve birleşme süreçleri üzerine uzmanlaşmış bir akademisyen ve danışman. Çeşitli şirketlerde beyaz yaka ve yöneticilere verdiği eğitimlerle tanınan yazar, bu kitapta akademik derinliği saha tecrübesiyle birleştiriyor.
+            </p>
+        </div>
+    </section>
+
+    <section id="satin-al" class="cta-section">
+        <h2 style="font-size: 2.5rem; color: white;">Kütüphanenize Ekleyin</h2>
+        <p style="color: var(--text-muted); margin-top:10px;">Tüm seçkin kitapçılarda.</p>
+        
+        <div class="store-grid">
+            <a href="https://www.gazikitabevi.com.tr/bankaciligin-metaverse-yolculugu-finansin-blokzinciri-ve-gelecegi" target="_blank" class="store-btn">
+                <i class="fas fa-book"></i> Gazi Kitabevi
+            </a>
+            <a href="https://www.kitapyurdu.com/kitap/bankaciligin-metaverse-yolculugu-finansin-blokzinciri-ve-gelecegi/735453.html&filter_name=bankacılığın+metaverse" target="_blank" class="store-btn">
+                <i class="fas fa-shopping-bag"></i> Kitapyurdu
+            </a>
+            <a href="https://www.amazon.com.tr/Bankacılığın-Metaverse-Yolculuğu-Finansın-Blokzinciri/dp/6255816575/ref=sr_1_1?crid=2FBOLK1HWUVU2&dib=eyJ2IjoiMSJ9.EFPPcFDUBgRT34DmSZpwaw.71eByKzP5SZyUNQTncZ0U2XVhWoVhTwT7EILmf6j3CE&dib_tag=se&keywords=bankacılığın+metaverse+yolculuğu&qid=1766058297&sprefix=bankacılığın+meta%2Caps%2C237&sr=8-1" target="_blank" class="store-btn">
+                <i class="fab fa-amazon"></i> Amazon
+            </a>
         </div>
     </section>
 
     <footer>
-        <p>&copy; 2024 blokzinciri101.com | Tüm Hakları Saklıdır.</p>
-        <div style="margin-top: 10px;">
-            <a href="#"><i class="fab fa-twitter"></i></a>
-            <a href="#"><i class="fab fa-linkedin"></i></a>
-            <a href="#"><i class="fas fa-envelope"></i></a>
-        </div>
+        <p style="color: var(--text-muted); font-size: 0.9rem;">&copy; 2025 Bankacılığın Metaverse Yolculuğu. Tüm Hakları Saklıdır.</p>
     </footer>
 
+    <script>
+        const canvas = document.getElementById('canvas-bg');
+        const ctx = canvas.getContext('2d');
+        let width, height, particles = [];
+
+        function resize() { width = canvas.width = window.innerWidth; height = canvas.height = window.innerHeight; }
+        
+        class Particle {
+            constructor() {
+                this.x = Math.random() * width; this.y = Math.random() * height;
+                this.vx = (Math.random() - 0.5) * 0.3; this.vy = (Math.random() - 0.5) * 0.3;
+                this.size = Math.random() * 2;
+            }
+            update() {
+                this.x += this.vx; this.y += this.vy;
+                if (this.x < 0 || this.x > width) this.vx *= -1;
+                if (this.y < 0 || this.y > height) this.vy *= -1;
+            }
+            draw() {
+                ctx.beginPath(); ctx.arc(this.x, this.y, this.size, 0, Math.PI * 2);
+                ctx.fillStyle = 'rgba(139, 92, 246, 0.5)'; ctx.fill();
+            }
+        }
+
+        function init() { particles = []; for(let i=0; i<60; i++) particles.push(new Particle()); }
+        function animate() {
+            ctx.clearRect(0, 0, width, height);
+            particles.forEach((p, i) => {
+                p.update(); p.draw();
+                for (let j = i; j < particles.length; j++) {
+                    const dx = p.x - particles[j].x; const dy = p.y - particles[j].y;
+                    const dist = Math.sqrt(dx*dx + dy*dy);
+                    if (dist < 150) {
+                        ctx.beginPath(); ctx.strokeStyle = `rgba(139, 92, 246, ${0.1 - dist/1500})`;
+                        ctx.lineWidth = 0.5; ctx.moveTo(p.x, p.y); ctx.lineTo(particles[j].x, particles[j].y); ctx.stroke();
+                    }
+                }
+            });
+            requestAnimationFrame(animate);
+        }
+        window.addEventListener('resize', () => { resize(); init(); });
+        resize(); init(); animate();
+    </script>
 </body>
 </html>
